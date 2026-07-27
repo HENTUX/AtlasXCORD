@@ -3,7 +3,7 @@
 </p>
 
 <h1 align="center">
-  <img src="https://i.imgur.com/X5HVTzL.png" width="30">
+  <img src="https://i.imgur.com/AqYP7Vj.png" width="30">
   AtlasXCORD
 </h1>
 
