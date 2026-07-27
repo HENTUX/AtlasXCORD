@@ -1416,3 +1416,7 @@ export const AtlasXCORDDevsById = /* #__PURE__*/ (() =>
             .map(([_, v]) => [v.id, v] as const)
     ))
 )() as Record<string, Dev>;
+
+export const EquicordDevs = AtlasXCORDDevs;
+export const EquicordDevsById = AtlasXCORDDevsById;
+export const AtlasXGODDevs = AtlasXCORDDevs;

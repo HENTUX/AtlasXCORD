@@ -7,7 +7,7 @@
 import { registerCommands } from "../api/registry";
 import { loadCustomCommands, registerCustomCommands } from "./custom";
 import { discordCommands } from "./discordActions";
-import { AtlasXCORDCommands } from "./AtlasXCORD";
+import { AtlasXCORDCommands } from "./equicord";
 import { navigationCommands } from "./navigation";
 import { pluginCommands } from "./pluginManagement";
 import { sendDmCommand } from "./sendDm";
