@@ -663,7 +663,7 @@ func loop() {
 			g.Dummy(0, 20),
 			g.Align(g.AlignCenter).To(
 				g.Style().SetFontSize(12).To(
-					g.Label("© 2026 HENTUX — github.com/HENTUX/AtlasXCORD — All rights reserved"),
+					g.Label("Copyright 2026 HENTUX - github.com/HENTUX/AtlasXCORD - All rights reserved"),
 				),
 			),
 		)

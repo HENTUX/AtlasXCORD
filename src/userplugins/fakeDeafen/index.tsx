@@ -11,7 +11,7 @@ import { t } from "@utils/esharqI18n";
 import definePlugin, { OptionType } from "@utils/types";
 import type { Channel, VoiceState } from "@vencord/discord-types";
 import { findByCodeLazy, findByProps, findStore } from "@webpack";
-import { ChannelStore, MediaEngineStore, PermissionsBits, PermissionStore, SelectedChannelStore, UserStore, VoiceActions } from "@webpack/common";
+import { ChannelStore, Menu, MediaEngineStore, PermissionsBits, PermissionStore, SelectedChannelStore, UserStore, VoiceActions } from "@webpack/common";
 
 export let fakeD = false;
 
@@ -144,7 +144,8 @@ const settings = definePluginSettings({
                     name: "faked",
                     icon: DeafenIcon,
                     tooltipText: t("╪º┘ä┘ê╪╢╪╣ ╪º┘ä┘ê┘ç┘à┘è ┘ä┘ä╪│┘à╪º╪╣┘ç ┘ê╪º┘ä┘à╪º┘è┘â Fake Deafen", "Fake Deafen"),
-                    onClick: toggleFakeDeafen
+                    onClick: toggleFakeDeafen,
+                    onContextMenu: showFakeDeafenContextMenu
                 });
             }
         }
@@ -249,6 +250,57 @@ function toggleFakeDeafen() {
         stopFakeStream();
         if (settings.store.fakeGame) leaveFakeActivity(channel?.id);
     }
+}
+
+function showFakeDeafenContextMenu(e: React.MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const muteEnabled = settings.store.mute;
+    const deafenEnabled = settings.store.deafen;
+    const camEnabled = settings.store.cam;
+    const streamEnabled = settings.store.fakeStream;
+    const gameEnabled = settings.store.fakeGame;
+
+    Menu.openContextMenu(e, Menu.buildMenu([
+        {
+            label: "Fake Deafen",
+            type: "text",
+            action: toggleFakeDeafen
+        },
+        { type: "separator" },
+        {
+            label: "Fake Mute",
+            type: "radio",
+            checked: muteEnabled,
+            action: () => { settings.store.mute = !muteEnabled; }
+        },
+        {
+            label: "Fake Deafen",
+            type: "radio",
+            checked: deafenEnabled,
+            action: () => { settings.store.deafen = !deafenEnabled; }
+        },
+        {
+            label: "Fake Camera",
+            type: "radio",
+            checked: camEnabled,
+            action: () => { settings.store.cam = !camEnabled; }
+        },
+        { type: "separator" },
+        {
+            label: "Fake Stream",
+            type: "radio",
+            checked: streamEnabled,
+            action: () => { settings.store.fakeStream = !streamEnabled; }
+        },
+        {
+            label: "Fake Game (Watch Together)",
+            type: "radio",
+            checked: gameEnabled,
+            action: () => { settings.store.fakeGame = !gameEnabled; }
+        }
+    ]));
 }
 
 let keydownListener: ((e: KeyboardEvent) => void) | null = null;
@@ -361,7 +413,8 @@ export default definePlugin({
                 name: "faked",
                 icon: DeafenIcon,
                 tooltipText: t("╪º┘ä┘ê╪╢╪╣ ╪º┘ä┘ê┘ç┘à┘è ┘ä┘ä╪│┘à╪º╪╣┘ç ┘ê╪º┘ä┘à╪º┘è┘â Fake Deafen", "Fake Deafen"),
-                onClick: toggleFakeDeafen
+                onClick: toggleFakeDeafen,
+                onContextMenu: showFakeDeafenContextMenu
             });
         }
 
