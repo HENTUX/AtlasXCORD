@@ -20,6 +20,17 @@
 import "~plugins";
 import "./fixWeirdAppRegionBug.css";
 
+console.log(
+    "%cAtlasXCORD %cv1.%c by HENTUX — https://github.com/HENTUX/AtlasXCORD",
+    "color: #b528ff; font-size: 20px; font-weight: bold;",
+    "color: #aaa; font-size: 14px;",
+    "color: #888; font-size: 12px;"
+);
+console.log(
+    "%c© 2026 HENTUX. All rights reserved. Unauthorized redistribution prohibited.",
+    "color: #ff5555; font-size: 11px; font-style: italic;"
+);
+
 export * as Api from "./api";
 export * as Plugins from "./api/PluginManager";
 export * as Components from "./components";

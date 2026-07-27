@@ -80,7 +80,7 @@ func main() {
 		os.Setenv("GDK_DPI_SCALE", "1")
 	}
 
-	win = g.NewMasterWindow("AtlasC2 Patcher", 1200, 800, linuxFlags)
+	win = g.NewMasterWindow("AtlasC2 Patcher — by HENTUX", 1200, 800, linuxFlags)
 
 	icon, _, err := image.Decode(bytes.NewReader(iconBytes))
 	if err != nil {
@@ -659,6 +659,13 @@ func loop() {
 			),
 
 			renderInstaller(),
+
+			g.Dummy(0, 20),
+			g.Align(g.AlignCenter).To(
+				g.Style().SetFontSize(12).To(
+					g.Label("© 2026 HENTUX — github.com/HENTUX/AtlasXCORD — All rights reserved"),
+				),
+			),
 		)
 
 	g.PopStyle()
