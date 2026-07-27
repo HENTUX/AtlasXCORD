@@ -1,14 +1,15 @@
 ﻿<p align="center">
-  <img src="https://cdn3.emoji.gg/emojis/754853-staff.png" width="400">
+  <img src="https://i.imgur.com/mCAszJv.png" width="400">
 </p>
 
 <h1 align="center">
-  <img src="https://cdn3.emoji.gg/emojis/515228-staff.png" width="30">
+  <img src="https://i.imgur.com/otc48My.png" width="30">
   AtlasXCORD
 </h1>
 
 <p align="center">
   <a href="https://guns.lol/ovd">
+    <img src="https://i.imgur.com/22FKvmB.png" width="20" alt="Logo">
     <img src="https://img.shields.io/badge/Portfolio-guns.lol/ovd-blueviolet?style=for-the-badge" alt="Portfolio">
   </a>
   <a href="https://github.com/HENTUX/AtlasXCORD">
