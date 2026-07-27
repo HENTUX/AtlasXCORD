@@ -23,6 +23,10 @@
 
 ---
 
+> **WARNING** — This project is intended for **educational and advanced users only**. You must be **18+ years old** to use, fork, or contribute to this repository. Misuse of this software (e.g. raiding, harassment, self-botting in violation of Discord TOS) is strictly prohibited. The developers assume **no liability** for any account termination, damage, or consequences resulting from the use of this software. By using AtlasXCORD, you accept full responsibility for your actions.
+
+---
+
 ## What is AtlasXCORD?
 
 AtlasXCORD is a powerful Discord client mod based on Equicord with **168 custom plugins**, source patches, and a dedicated patcher. It gives you full control over your Discord experience.
@@ -144,4 +148,16 @@ Copy `app.asar` to `%LOCALAPPDATA%\Discord\app-X.X.XXXX\resources\app.asar`
 
 <p align="center">
   <sub>Made with passion by <a href="https://guns.lol/ovd">HENTUX</a></sub>
+</p>
+
+---
+
+<p align="center">
+  <sub>&copy; 2026 HENTUX. All rights reserved. Unauthorized reproduction, redistribution, or use of this software is strictly prohibited.</sub>
+</p>
+<p align="center">
+  <sub>This software is provided "as is" without warranty of any kind. Use at your own risk.</sub>
+</p>
+<p align="center">
+  <sub>18+ only. By using this software you agree to take full responsibility for your actions.</sub>
 </p>
