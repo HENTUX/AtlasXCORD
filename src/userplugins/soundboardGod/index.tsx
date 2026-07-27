@@ -6,13 +6,10 @@ import { Switch } from "@components/Switch";
 import { LazyComponent } from "@utils/lazyReact";
 import { ModalCloseButton, ModalContent, ModalHeader, ModalRoot, ModalSize, openModal } from "@utils/modal";
 import definePlugin, { OptionType } from "@utils/types";
-import { filters, find, findStoreLazy } from "@webpack";
+import { filters, find, findComponentByCodeLazy, findStoreLazy } from "@webpack";
 import { Avatar, ChannelStore, Constants, GuildStore, IconUtils, MediaEngineStore, Menu, React, RestAPI, TextInput, Toasts, Tooltip, UserStore } from "@webpack/common";
 
-const HeaderBarIcon = LazyComponent(() => {
-    const filter = filters.byCode(".HEADER_BAR_BADGE");
-    return find((m: any) => m.Icon && filter(m.Icon)).Icon;
-});
+const HeaderBarIcon = findComponentByCodeLazy(".HEADER_BAR_BADGE_TOP:", '"aria-haspopup":');
 
 let SoundboardStore: any = null;
 try { SoundboardStore = findStoreLazy("SoundboardStore"); } catch { }

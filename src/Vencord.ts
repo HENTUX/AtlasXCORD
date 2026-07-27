@@ -20,9 +20,6 @@
 import "~plugins";
 import "./fixWeirdAppRegionBug.css";
 
-console.log("AtlasXCORD by HENTUX - github.com/HENTUX/AtlasXCORD");
-console.log("Copyright 2026 HENTUX. All rights reserved.");
-
 export * as Api from "./api";
 export * as Plugins from "./api/PluginManager";
 export * as Components from "./components";

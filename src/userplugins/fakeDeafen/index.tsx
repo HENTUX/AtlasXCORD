@@ -11,7 +11,7 @@ import { t } from "@utils/esharqI18n";
 import definePlugin, { OptionType } from "@utils/types";
 import type { Channel, VoiceState } from "@vencord/discord-types";
 import { findByCodeLazy, findByProps, findStore } from "@webpack";
-import { ChannelStore, Menu, MediaEngineStore, PermissionsBits, PermissionStore, SelectedChannelStore, UserStore, VoiceActions } from "@webpack/common";
+import { ChannelStore, ContextMenuApi, Menu, MediaEngineStore, PermissionsBits, PermissionStore, SelectedChannelStore, UserStore, VoiceActions } from "@webpack/common";
 
 export let fakeD = false;
 
@@ -252,55 +252,49 @@ function toggleFakeDeafen() {
     }
 }
 
+function FakeDeafenContextMenu() {
+    return (
+        <Menu.Menu onClose={ContextMenuApi.closeContextMenu}>
+            <Menu.MenuItem
+                label="Toggle Fake Deafen"
+                id="faked-toggle"
+                action={toggleFakeDeafen}
+            />
+            <Menu.MenuSeparator />
+            <Menu.MenuItem
+                label="Fake Mute"
+                id="faked-mute"
+                action={() => { settings.store.mute = !settings.store.mute; }}
+            />
+            <Menu.MenuItem
+                label="Fake Deafen"
+                id="faked-deafen"
+                action={() => { settings.store.deafen = !settings.store.deafen; }}
+            />
+            <Menu.MenuItem
+                label="Fake Camera"
+                id="faked-cam"
+                action={() => { settings.store.cam = !settings.store.cam; }}
+            />
+            <Menu.MenuSeparator />
+            <Menu.MenuItem
+                label="Fake Stream"
+                id="faked-stream"
+                action={() => { settings.store.fakeStream = !settings.store.fakeStream; }}
+            />
+            <Menu.MenuItem
+                label="Fake Game (Watch Together)"
+                id="faked-game"
+                action={() => { settings.store.fakeGame = !settings.store.fakeGame; }}
+            />
+        </Menu.Menu>
+    );
+}
+
 function showFakeDeafenContextMenu(e: React.MouseEvent) {
     e.preventDefault();
     e.stopPropagation();
-
-    const muteEnabled = settings.store.mute;
-    const deafenEnabled = settings.store.deafen;
-    const camEnabled = settings.store.cam;
-    const streamEnabled = settings.store.fakeStream;
-    const gameEnabled = settings.store.fakeGame;
-
-    Menu.openContextMenu(e, Menu.buildMenu([
-        {
-            label: "Fake Deafen",
-            type: "text",
-            action: toggleFakeDeafen
-        },
-        { type: "separator" },
-        {
-            label: "Fake Mute",
-            type: "radio",
-            checked: muteEnabled,
-            action: () => { settings.store.mute = !muteEnabled; }
-        },
-        {
-            label: "Fake Deafen",
-            type: "radio",
-            checked: deafenEnabled,
-            action: () => { settings.store.deafen = !deafenEnabled; }
-        },
-        {
-            label: "Fake Camera",
-            type: "radio",
-            checked: camEnabled,
-            action: () => { settings.store.cam = !camEnabled; }
-        },
-        { type: "separator" },
-        {
-            label: "Fake Stream",
-            type: "radio",
-            checked: streamEnabled,
-            action: () => { settings.store.fakeStream = !streamEnabled; }
-        },
-        {
-            label: "Fake Game (Watch Together)",
-            type: "radio",
-            checked: gameEnabled,
-            action: () => { settings.store.fakeGame = !gameEnabled; }
-        }
-    ]));
+    ContextMenuApi.openContextMenu(e, () => <FakeDeafenContextMenu />);
 }
 
 let keydownListener: ((e: KeyboardEvent) => void) | null = null;

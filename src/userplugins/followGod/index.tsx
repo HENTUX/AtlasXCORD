@@ -7,13 +7,11 @@ import { ModalCloseButton, ModalContent, ModalHeader, ModalRoot, ModalSize, open
 import definePlugin, { OptionType } from "@utils/types";
 import { LazyComponent } from "@utils/lazyReact";
 import { filters, find, findByPropsLazy, findStoreLazy } from "@webpack";
+import { findComponentByCodeLazy } from "@webpack";
 import { Avatar, ChannelStore, Menu, PermissionsBits, PermissionStore, React, SelectedChannelStore, TextInput, Toasts, Tooltip, UserStore } from "@webpack/common";
 import type { Channel, User } from "@vencord/discord-types";
 
-const HeaderBarIcon = LazyComponent(() => {
-    const filter = filters.byCode(".HEADER_BAR_BADGE");
-    return find(m => m.Icon && filter(m.Icon)).Icon;
-});
+const HeaderBarIcon = findComponentByCodeLazy(".HEADER_BAR_BADGE_TOP:", '"aria-haspopup":');
 
 const activityLabels: Record<number, string> = { 0: "Playing", 1: "Streaming", 2: "Listening to", 3: "Watching", 5: "Competing" };
 
