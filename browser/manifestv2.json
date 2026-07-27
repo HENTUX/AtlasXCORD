@@ -1,0 +1,65 @@
+﻿{
+    "manifest_version": 2,
+    "minimum_chrome_version": "91",
+    "name": "AtlasXCORD Web",
+    "description": "The other cutest Discord mod now in your browser",
+    "author": "AtlasXCORD",
+    "homepage_url": "https://github.com/HENTUX/AtlasXCORD",
+    "icons": {
+        "128": "icon.png"
+    },
+    "permissions": [
+        "webRequest",
+        "webRequestBlocking",
+        "*://*.discord.com/*",
+        "https://raw.githubusercontent.com/*"
+    ],
+    "content_scripts": [
+        {
+            "run_at": "document_start",
+            "matches": [
+                "*://*.discord.com/*"
+            ],
+            "js": [
+                "content.js"
+            ],
+            "all_frames": true,
+            "world": "ISOLATED"
+        },
+        {
+            "run_at": "document_start",
+            "matches": [
+                "*://*.discord.com/*"
+            ],
+            "js": [
+                "dist/AtlasXCORD.js"
+            ],
+            "all_frames": true,
+            "world": "MAIN"
+        }
+    ],
+    "background": {
+        "scripts": [
+            "background.js"
+        ]
+    },
+    "web_accessible_resources": [
+        "dist/AtlasXCORD.js",
+        "dist/AtlasXCORD.css"
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "firefox@AtlasXCORD.org",
+            "strict_min_version": "128.0",
+            "data_collection_permissions": {
+                "required": [
+                    "none"
+                ],
+                "optional": [
+                    "authenticationInfo",
+                    "locationInfo"
+                ]
+            }
+        }
+    }
+}
