@@ -10,6 +10,7 @@
 <p align="center">
   <a href="https://guns.lol/ovd">
     <img src="https://i.imgur.com/22FKvmB.png" width="40" alt="guns.lol">
+    <img src="https://i.imgur.com/X5HVTzL.png" width="20" alt="Portfolio">
   </a>
   <a href="https://github.com/HENTUX/AtlasXCORD">
     <img src="https://img.shields.io/badge/GitHub-HENTUX-181717?style=for-the-badge&logo=github" alt="GitHub">
