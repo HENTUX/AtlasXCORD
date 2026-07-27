@@ -11,12 +11,12 @@ import (
 	"image/color"
 )
 
-const ReleaseUrl = "https://api.github.com/repos/HENTUX/userplugins/releases/latest"
-const ReleaseUrlFallback = "https://github.com/HENTUX/userplugins/releases/latest"
-const InstallerReleaseUrl = "https://api.github.com/repos/HENTUX/userplugins/releases/latest"
-const InstallerReleaseUrlFallback = "https://github.com/HENTUX/userplugins/releases/latest"
+const ReleaseUrl = "https://api.github.com/repos/HENTUX/AtlasXCORD/releases/latest"
+const ReleaseUrlFallback = "https://github.com/HENTUX/AtlasXCORD/releases/latest"
+const InstallerReleaseUrl = "https://api.github.com/repos/HENTUX/AtlasXCORD/releases/latest"
+const InstallerReleaseUrlFallback = "https://github.com/HENTUX/AtlasXCORD/releases/latest"
 
-var UserAgent = "AtlasC2/" + buildinfo.InstallerGitHash + " (https://github.com/HENTUX/userplugins)"
+var UserAgent = "AtlasC2/" + buildinfo.InstallerGitHash + " (https://github.com/HENTUX/AtlasXCORD)"
 
 var (
 	DiscordGreen  = color.RGBA{R: 0x2D, G: 0x7C, B: 0x46, A: 0xFF}
