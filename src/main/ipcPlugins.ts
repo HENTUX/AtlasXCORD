@@ -32,6 +32,7 @@ for (const [plugin, methods] of Object.entries(PluginNatives)) {
 
     for (const [methodName, method] of entries) {
         const key = `VencordPluginNative_${plugin}_${methodName}`;
+        try { ipcMain.removeHandler(key); } catch {}
         ipcMain.handle(key, method);
         mappings[methodName] = key;
     }

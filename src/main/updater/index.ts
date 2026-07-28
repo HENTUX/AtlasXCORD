@@ -26,6 +26,8 @@ import { serializeErrors } from "./common";
 if (!IS_UPDATER_DISABLED) {
     require(IS_STANDALONE ? "./http" : "./git");
 } else {
+    try { ipcMain.removeHandler(IpcEvents.GET_REPO); } catch {}
     ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
+    try { ipcMain.removeHandler(IpcEvents.GET_UPDATES); } catch {}
     ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(() => []));
 }

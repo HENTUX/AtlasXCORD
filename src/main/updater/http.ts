@@ -78,7 +78,11 @@ async function applyUpdates() {
     return true;
 }
 
+try { ipcMain.removeHandler(IpcEvents.GET_REPO); } catch {}
 ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(() => `https://github.com/${gitRemote}`));
+try { ipcMain.removeHandler(IpcEvents.GET_UPDATES); } catch {}
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
+try { ipcMain.removeHandler(IpcEvents.UPDATE); } catch {}
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(fetchUpdates));
+try { ipcMain.removeHandler(IpcEvents.BUILD); } catch {}
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(applyUpdates));

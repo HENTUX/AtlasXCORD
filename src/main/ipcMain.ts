@@ -75,8 +75,10 @@ function getThemeData(fileName: string) {
     return readFile(safePath, "utf-8");
 }
 
+try { ipcMain.removeHandler(IpcEvents.OPEN_QUICKCSS); } catch {}
 ipcMain.handle(IpcEvents.OPEN_QUICKCSS, () => shell.openPath(QUICK_CSS_PATH));
 
+try { ipcMain.removeHandler(IpcEvents.OPEN_EXTERNAL); } catch {}
 ipcMain.handle(IpcEvents.OPEN_EXTERNAL, (_, url) => {
     try {
         var { protocol } = new URL(url);
@@ -89,18 +91,24 @@ ipcMain.handle(IpcEvents.OPEN_EXTERNAL, (_, url) => {
     shell.openExternal(url);
 });
 
+try { ipcMain.removeHandler(IpcEvents.GET_QUICK_CSS); } catch {}
 ipcMain.handle(IpcEvents.GET_QUICK_CSS, () => readCss());
+try { ipcMain.removeHandler(IpcEvents.SET_QUICK_CSS); } catch {}
 ipcMain.handle(IpcEvents.SET_QUICK_CSS, (_, css) =>
     writeFileSync(QUICK_CSS_PATH, css)
 );
 
+try { ipcMain.removeHandler(IpcEvents.GET_THEMES_LIST); } catch {}
 ipcMain.handle(IpcEvents.GET_THEMES_LIST, () => listThemes());
+try { ipcMain.removeHandler(IpcEvents.GET_THEME_DATA); } catch {}
 ipcMain.handle(IpcEvents.GET_THEME_DATA, (_, fileName) => getThemeData(fileName));
+try { ipcMain.removeHandler(IpcEvents.DELETE_THEME); } catch {}
 ipcMain.handle(IpcEvents.DELETE_THEME, (_, fileName) => {
     const safePath = ensureSafePath(THEMES_DIR, fileName);
     if (!safePath) return Promise.reject(`Unsafe path ${fileName}`);
     return unlink(safePath);
 });
+try { ipcMain.removeHandler(IpcEvents.GET_THEME_SYSTEM_VALUES); } catch {}
 ipcMain.handle(IpcEvents.GET_THEME_SYSTEM_VALUES, () => {
     let accentColor = systemPreferences.getAccentColor?.() ?? "";
 
@@ -113,9 +121,12 @@ ipcMain.handle(IpcEvents.GET_THEME_SYSTEM_VALUES, () => {
     };
 });
 
+try { ipcMain.removeHandler(IpcEvents.OPEN_THEMES_FOLDER); } catch {}
 ipcMain.handle(IpcEvents.OPEN_THEMES_FOLDER, () => shell.openPath(THEMES_DIR));
+try { ipcMain.removeHandler(IpcEvents.OPEN_SETTINGS_FOLDER); } catch {}
 ipcMain.handle(IpcEvents.OPEN_SETTINGS_FOLDER, () => shell.openPath(SETTINGS_DIR));
 
+try { ipcMain.removeHandler(IpcEvents.INIT_FILE_WATCHERS); } catch {}
 ipcMain.handle(IpcEvents.INIT_FILE_WATCHERS, ({ sender }) => {
     let quickCssWatcher: FSWatcher | undefined;
     let rendererCssWatcher: FSWatcher | undefined;
@@ -150,6 +161,7 @@ ipcMain.on(IpcEvents.GET_MONACO_THEME, e => {
 
 let monacoWin: BrowserWindow | null = null;
 
+try { ipcMain.removeHandler(IpcEvents.OPEN_MONACO_EDITOR); } catch {}
 ipcMain.handle(IpcEvents.OPEN_MONACO_EDITOR, async () => {
     if (monacoWin && !monacoWin.isDestroyed()) {
         monacoWin.show();
@@ -194,6 +206,7 @@ app.on("before-quit", async event => {
     }
 });
 
+try { ipcMain.removeHandler(IpcEvents.GET_RENDERER_CSS); } catch {}
 ipcMain.handle(IpcEvents.GET_RENDERER_CSS, () => readFile(RENDERER_CSS_PATH, "utf-8"));
 
 if (IS_DISCORD_DESKTOP) {

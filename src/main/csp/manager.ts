@@ -13,8 +13,11 @@ import { CspPolicies, ImageAndCssSrc } from ".";
 export type CspRequestResult = "invalid" | "cancelled" | "unchecked" | "ok" | "conflict";
 
 export function registerCspIpcHandlers() {
+    try { ipcMain.removeHandler(IpcEvents.CSP_REMOVE_OVERRIDE); } catch {}
     ipcMain.handle(IpcEvents.CSP_REMOVE_OVERRIDE, removeCspRule);
+    try { ipcMain.removeHandler(IpcEvents.CSP_REQUEST_ADD_OVERRIDE); } catch {}
     ipcMain.handle(IpcEvents.CSP_REQUEST_ADD_OVERRIDE, addCspRule);
+    try { ipcMain.removeHandler(IpcEvents.CSP_IS_DOMAIN_ALLOWED); } catch {}
     ipcMain.handle(IpcEvents.CSP_IS_DOMAIN_ALLOWED, isDomainAllowed);
 }
 

@@ -93,7 +93,11 @@ async function build() {
     return !res.stderr.includes("Build failed");
 }
 
+try { ipcMain.removeHandler(IpcEvents.GET_REPO); } catch {}
 ipcMain.handle(IpcEvents.GET_REPO, serializeErrors(getRepo));
+try { ipcMain.removeHandler(IpcEvents.GET_UPDATES); } catch {}
 ipcMain.handle(IpcEvents.GET_UPDATES, serializeErrors(calculateGitChanges));
+try { ipcMain.removeHandler(IpcEvents.UPDATE); } catch {}
 ipcMain.handle(IpcEvents.UPDATE, serializeErrors(pull));
+try { ipcMain.removeHandler(IpcEvents.BUILD); } catch {}
 ipcMain.handle(IpcEvents.BUILD, serializeErrors(build));
